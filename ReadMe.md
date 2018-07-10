@@ -40,7 +40,7 @@ node prod.server.js
       }
       ```
 
-**以上是正常处理一个 *"可以NPM安装但又不符合webpack模块化规范"* 的库, 例如其它库XX, 处理后可以直接 import xx from XX 后使用; 但是, zepto有点特殊, 默认npm安装的包或者从github clone的包, 都是仅包含5个模块, 其它如常用的touch模块是未包含的, 想要正常使用还需做得更多.**
+*以上是正常处理一个 *"可以NPM安装但又不符合webpack模块化规范"* 的库, 例如其它库XX, 处理后可以直接 import xx from XX 后使用; 但是, zepto有点特殊, 默认npm安装的包或者从github clone的包, 都是仅包含5个模块, 其它如常用的touch模块是未包含的, 想要正常使用还需做得更多.*
 
   3. 怎样拿到一个包含更多模块的zepto包 ?
      
@@ -79,7 +79,7 @@ node prod.server.js
      })
      ```
 
-**大功告成, 现在zepto跟你使用jquery是一样的开发体验了 !**
+     **大功告成, 现在zepto跟你使用jquery是一样的开发体验了 !**
 
 <br><br>
 
