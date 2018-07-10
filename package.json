@@ -30,7 +30,6 @@
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "postcss-cssnext": "^3.1.0",
-    "postcss-font-magician": "^2.2.1",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "script-loader": "^0.7.2",
