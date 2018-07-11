@@ -2,7 +2,7 @@
  * @Author: Eleven 
  * @Date: 2017-12-11 10:51:03 
  * @Last Modified by: Eleven
- * @Last Modified time: 2018-07-10 13:30:24
+ * @Last Modified time: 2018-07-11 22:23:04
  */
 
 let path = require('path');
@@ -47,7 +47,7 @@ module.exports = {
             // 处理less/css文件(从右到左依次调用less、css、style加载器，前一个的输出是后一个的输入)
             {
                 test: /\.(less|css)$/,
-                loader: ExtractTextPlugin.extract({
+                use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader', 'postcss-loader', 'less-loader']
                 })
