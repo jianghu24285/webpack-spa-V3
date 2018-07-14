@@ -6,7 +6,8 @@
   "scripts": {
     "test": "rm -rf ./static/* && cross-env NODE_ENV=development webpack -w --colors --profile",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --colors",
-    "build": "rm -rf ./static/* && cross-env NODE_ENV=production webpack --colors --profile"
+    "build": "rm -rf ./static/* && cross-env NODE_ENV=production webpack --colors --profile",
+    "server": "http-server dist"
   },
   "author": "Eleven",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "postcss-cssnext": "^3.1.0",
