@@ -14,7 +14,7 @@ npm run dev
 npm run build
 
 # 开启node express服务,访问打包后目录
-node prod.server.js
+npm run server 或 npm run http-server
 ```
 
 ## Webpack配置的几个重点
