@@ -7,7 +7,8 @@
     "test": "rm -rf ./static/* && cross-env NODE_ENV=development webpack -w --colors --profile",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --colors",
     "build": "rm -rf ./static/* && cross-env NODE_ENV=production webpack --colors --profile",
-    "server": "http-server dist"
+    "server": "node prod.server.js",
+    "http-server": "http-server dist"
   },
   "author": "Eleven",
   "license": "ISC",

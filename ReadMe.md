@@ -1,4 +1,4 @@
-# Webpack单页面打包
+# Webpack H5活动单页打包实践 - webpack 3X
 
 <br>
 
@@ -370,6 +370,8 @@ node prod.server.js
      localhost:8888
      ```
 
+<br><br>
+
 > **http-server, 比自己配置一个express服务更简洁的方式, 去访问打包后的资源.**
   
   1. 安装依赖
@@ -385,5 +387,5 @@ node prod.server.js
   3. 访问路径
      
      ```bash
-     localhost:8080 或 http://127.0.0.1:8080 等.
+     localhost:8080 或 http://127.0.0.1:8080
      ```
