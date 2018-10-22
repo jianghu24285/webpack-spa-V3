@@ -263,15 +263,14 @@ npm run server 或 npm run http-server
       ```
 
     3. 有的时候, 图片可能既不在css中, 也不在html中引入, 怎么办？   
-
-       ```bash   
-       import img from 'xxx/xxx/123.jpg'   
-       或 let img = require('xxx/xxx/123.jpg')
-       ```
+        ```bash   
+        import img from 'xxx/xxx/123.jpg'   
+        或 let img = require('xxx/xxx/123.jpg')
+        ```
        js中引用img, webpack将会自动搞定它.
 
     4. 图片等资源的访问路径问题:    
-    经过上面的处理, 静态资源处理基本没有问题了, webpack编译时将会将文件打包到你指定的生成目录, 但是不同位置的图片路径改写会是一个问题.   
+       经过上面的处理, 静态资源处理基本没有问题了, webpack编译时将会将文件打包到你指定的生成目录, 但是不同位置的图片路径改写会是一个问题.   
     *全部通过绝对路径访问即可, 在output下的publicPath填上适当的server端头, 来保证所有静态资源文件路径能被访问到, 具体要根据服务器部署的目录结构来做修改.*   
        
        ```bash
