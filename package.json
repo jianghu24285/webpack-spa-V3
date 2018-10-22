@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rm -rf ./static/* && cross-env NODE_ENV=development webpack -w --colors --profile",
+    "test": "cross-env NODE_ENV=development webpack -w --colors --profile",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --colors",
-    "build": "rm -rf ./static/* && cross-env NODE_ENV=production webpack --colors --profile",
+    "build": "cross-env NODE_ENV=production webpack --colors --profile",
     "server": "node prod.server.js",
     "http-server": "http-server dist"
   },
@@ -21,6 +21,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "cssnano": "^4.0.0",

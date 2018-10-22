@@ -262,7 +262,7 @@ npm run server 或 npm run http-server
       }
       ```
 
-    3. 有的时候, 图片可能既不在css中, 也不在html中引入, 怎么办?   
+    3. 有的时候, 图片可能既不在css中, 也不在html中引入, 怎么办？   
 
        ```bash   
        import img from 'xxx/xxx/123.jpg'   

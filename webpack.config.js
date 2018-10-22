@@ -2,13 +2,14 @@
  * @Author: Eleven 
  * @Date: 2017-12-11 10:51:03 
  * @Last Modified by: Eleven
- * @Last Modified time: 2018-07-13 15:53:12
+ * @Last Modified time: 2018-10-22 23:37:28
  */
 
 let path = require('path');
 let webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+let CleanPlugin = require('clean-webpack-plugin');
 
 const ROOT_PATH = path.resolve(__dirname);
 const SRC_PATH = path.resolve(ROOT_PATH, 'src');
@@ -18,11 +19,14 @@ let isProd = process.env.NODE_ENV === 'production' ? true : false
 
 module.exports = {
     entry: {
+        vendor: ['zepto'],
         index: './src/index.js'
     },
     output: {
         path: DIST_PATH,
-        filename: 'js/[name].js',
+        filename: 'js/[name].[hash:7].js',
+        // 热更新不能启用chunkhash,是一个问题!
+        // filename: 'js/[name].[chunkhash:8].js',
         publicPath: '/'
     },
     devtool: isProd ? false : 'source-map',
@@ -110,6 +114,7 @@ module.exports = {
         ]
     },
     plugins: [
+        !isProd ? () => {} : new CleanPlugin(['dist']),
         // 自动加载模块，而不必到处 import 或 require.
         new webpack.ProvidePlugin({
             $: 'zepto',
@@ -120,15 +125,30 @@ module.exports = {
             filename: './index.html',
             template: './src/index.html',
             inject: 'body',
-            hash: true,
             minify: {
                 removeComments: true,
                 collapseWhitespace: true
             }
         }),
-        new ExtractTextPlugin('css/[name].css'),
+        new ExtractTextPlugin('css/[name].[contenthash:7].css'),
+        /**
+         * 抽取vendor包(采用了和vue-cli相同的方案):
+         *  1.想要多入口,js、css文件的hash采用[chunkhash]才能保证文件hash不每次都变化;
+         *    [ 一个坑点: 修改js的内容,css文件的hash会跟着变化!
+         *      解决: css文件的hash,既不是[hash]也不是[chunkhash],而是[contenthash] !! 
+         *           js文件仍然采用[chunkhash] !!
+         *           (这可以保证js和css有各自不同的文件hash,而且各自的修改不会相互影响hash值 !!) ]
+         *  2.需要抽取manifest.js,记录模块间依赖关系;
+         *  3.使用HashedModuleIdsPlugin()去改变webpack默认的chunk id命名;
+         */
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor', 'manifest'],
+            minChunks: Infinity,
+        }),
+        // 使用和顺序无关的模块命名方式
+        new webpack.HashedModuleIdsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        !isProd ? () => {} : new webpack.optimize.UglifyJsPlugin({
+        !isProd ? () => { } : new webpack.optimize.UglifyJsPlugin({
             parallel: true, // 使用多进程并行和文件缓存来提高构建速度
             compress: {
                 drop_console: true,     // 删除所有的 `console` 语句
